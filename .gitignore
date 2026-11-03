@@ -1,0 +1,34 @@
+# Dados de saúde: nunca versionar
+data/
+samsunghealth_*/
+rpe*.txt
+*.image
+
+# Formatos que podem carregar dados, salvo o que for publicado de propósito
+*.csv
+*.parquet
+*.feather
+*.db
+*.sqlite
+*.pkl
+!public_data/**
+
+# Notebooks salvam tabelas e gráficos dentro do próprio arquivo
+*.ipynb
+
+# Segredos e configuração local
+.env
+.streamlit/secrets.toml
+
+# Python e ambiente
+__pycache__/
+*.py[cod]
+.venv/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Sistema e editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,6 @@
+id,pergunta,unidade,sinal_esperado,n,efeito,ic_inf,ic_sup,q,boot_inf,boot_sup,efeito_sem_controle,spearman,veredito
+H1,Mais treino reduz a VFC da noite seguinte?,dp por 30 min de treino,-1,267,-0.131,-0.254,-0.007,0.064,-0.266,-0.009,-0.108,-0.1,Sustentada
+H2,Mais treino aumenta a FC da noite seguinte?,dp por 30 min de treino,1,267,0.194,0.068,0.32,0.013,0.06,0.327,0.148,0.123,Sustentada
+H3,Mais treino muda o tempo dormido na noite seguinte?,dp por 30 min de treino,0,267,-0.034,-0.167,0.1,0.623,-0.185,0.09,-0.024,-0.042,Não sustentada
+H4,Dormir mais aumenta a VFC da noite seguinte?,dp por 1 dp de sono,1,267,-0.12,-0.226,-0.013,0.064,-0.236,-0.008,-0.038,-0.044,"Cumpre os critérios, com sinal contrário"
+H5,Dormir mais tarde reduz a VFC da mesma noite?,dp por 1 dp de horário,-1,267,0.037,-0.077,0.152,0.623,-0.096,0.138,0.062,0.065,Não sustentada

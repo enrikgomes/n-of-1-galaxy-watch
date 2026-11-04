@@ -1,0 +1,9 @@
+resposta,faixa_treino,n,media_dp,ic_inf,ic_sup
+FC da noite seguinte,Sem treino,159,-0.141,-0.315,0.032
+FC da noite seguinte,Até 30 min,14,0.739,0.148,1.33
+FC da noite seguinte,31 a 60 min,79,0.2,-0.064,0.465
+FC da noite seguinte,Mais de 60 min,29,0.16,-0.192,0.513
+VFC da noite seguinte,Sem treino,159,0.111,-0.054,0.276
+VFC da noite seguinte,Até 30 min,14,-0.212,-0.779,0.354
+VFC da noite seguinte,31 a 60 min,79,-0.161,-0.424,0.101
+VFC da noite seguinte,Mais de 60 min,29,-0.068,-0.417,0.281

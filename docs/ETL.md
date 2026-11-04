@@ -307,6 +307,19 @@ As correlações com deslocamento mostram que a regra do dia do despertar está 
 - **Circularidade:** `sam_fc_repouso` quase repete `fc_sono_media`, e `sam_vfc` quase repete `rmssd_noite`. Correlacioná-los entre si, ou um score com seus insumos, não diz nada novo.
 - **`is_outlier` da respiração:** 68% dos registros têm valor 1 e as medianas são quase iguais. O significado não está claro, por isso a coluna não filtra nada.
 
+## Etapa 5: hipóteses
+
+As análises estão descritas em [HIPOTESES.md](HIPOTESES.md) e [RESULTADOS.md](RESULTADOS.md).
+
+## Etapa 6: dados públicos
+
+**Saída:** `public_data/`, a única pasta de dados do repositório, descrita em [seu README](../public_data/README.md).
+**Código:** [`src/publico/gerar.py`](../src/publico/gerar.py) e [`src/publico/sintetico.py`](../src/publico/sintetico.py).
+
+- **Agregados reais:** só efeitos, contagens e variações relativas. Grupos com menos de 5 observações são suprimidos.
+- **Dados sintéticos:** gerados a partir de valores inventados. Um teste confirma que o gerador não lê nenhum arquivo.
+- **Verificação:** ao final da geração, uma checagem procura datas, identificadores, nome de usuário, colunas proibidas e grupos pequenos. Se achar algum, a publicação é bloqueada.
+
 ## Como reproduzir
 
 ```bash
@@ -315,6 +328,8 @@ python -m src.etl.leitura
 python -m src.etl.fc_sessao
 python -m src.etl.sessoes
 python -m src.etl.diario
+python -m src.analysis.hipoteses
+python -m src.publico.gerar
 ```
 
 Os testes usam só dados sintéticos, então rodam sem os dados reais. Os outros comandos exigem o export em `data/raw/`, e `fc_sessao` também exige `data/config_local.json`.

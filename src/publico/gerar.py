@@ -16,7 +16,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from src.analysis.hipoteses import preparar_diario
+from src.analysis.hipoteses import JANELA_BASE, MINIMO_BASE, preparar_diario
 from src.etl.leitura import ler_bruto, ler_tabela, limpar_nomes, localizar_arquivo, localizar_export
 from src.etl.tabelas import TABELAS
 from src.publico.sintetico import gerar_diario, gerar_sessoes_fc, para_publicacao
@@ -80,6 +80,19 @@ def tabela_esteira(res: pd.DataFrame) -> pd.DataFrame:
     t["pergunta"] = t["id"].map(lambda i: PERGUNTAS_ESTEIRA[i][0])
     t["unidade"] = t["id"].map(lambda i: PERGUNTAS_ESTEIRA[i][1])
     return t[["id", "pergunta", "unidade", "sinal_esperado", "base", "n", "efeito", "ic_inf", "ic_sup", "sinal_exploratorio"]].round(2)
+
+
+def efeitos_unidade_real(res: pd.DataFrame, d: pd.DataFrame) -> pd.DataFrame:
+    """Converte H1 e H2 de desvios padrão para ms e bpm, pelo desvio móvel mediano de 28 dias."""
+    r = res.set_index("id")
+    linhas = []
+    for id_h, coluna, unidade in (("H1", "rmssd_noite", "ms por 30 min de treino"), ("H2", "fc_sono_media", "bpm por 30 min de treino")):
+        desvio = d[coluna].shift(1).rolling(JANELA_BASE, min_periods=MINIMO_BASE).std().median()
+        linhas.append({
+            "id": id_h, "unidade": unidade, "efeito": r.loc[id_h, "efeito"] * desvio,
+            "ic_inf": r.loc[id_h, "ic_inf"] * desvio, "ic_sup": r.loc[id_h, "ic_sup"] * desvio,
+        })
+    return pd.DataFrame(linhas).round(2)
 
 
 def dose_resposta(d: pd.DataFrame) -> pd.DataFrame:
@@ -157,6 +170,7 @@ def tabelas_reais() -> dict[str, pd.DataFrame]:
     return {
         "real_hipoteses_diarias": tabela_diarias(ler(p, "res_diarias")),
         "real_hipoteses_esteira": tabela_esteira(ler(p, "res_esteira")),
+        "real_efeitos_unidade_real": efeitos_unidade_real(ler(p, "res_diarias"), d),
         "real_sensibilidade": ler(p, "res_sensibilidade").round(3),
         "real_placebo": ler(p, "res_placebo").round(3),
         "real_matriz_exploratoria": matriz[["x", "y", "lag", "rho", "n", "q"]].round(3),

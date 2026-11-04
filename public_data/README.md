@@ -21,6 +21,7 @@ O comando `python -m src.publico.gerar` bloqueia a publicação se um arquivo:
 |---|---|
 | `real_hipoteses_diarias.csv` | Efeitos, intervalos e veredito de H1 a H5 |
 | `real_hipoteses_esteira.csv` | Efeitos de H6 a H10 em cada base de sessões |
+| `real_efeitos_unidade_real.csv` | H1 e H2 convertidos para ms e bpm por 30 min de treino |
 | `real_sensibilidade.csv` | H1 a H3 com minutos de FC acima do limiar |
 | `real_placebo.csv` | Teste placebo, posterior aos resultados |
 | `real_dose_resposta.csv` | Média da noite seguinte por faixa de treino, em desvios padrão; descritivo |

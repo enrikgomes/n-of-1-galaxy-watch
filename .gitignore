@@ -17,6 +17,7 @@ rpe*.txt
 *.ipynb
 
 # Segredos e configuração local
+.claude/
 .env
 .streamlit/secrets.toml
 
